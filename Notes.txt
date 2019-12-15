@@ -1,0 +1,19 @@
+##Build the docker image from Dockerfile
+docker build -t eg_sshd .
+
+###Spin the docker instances with below command
+docker run -d --name web1 eg_sshd
+docker run -d --name web2 eg_sshd
+docker run -d --name db1 eg_sshd
+docker run -d --name web3 eg_sshd
+
+## Get docker instances IP Address
+xkarani@xkarani:~/SSH_Ansible$ docker inspect --format {{.NetworkSettings.IPAddress}} web1
+172.17.0.3
+xkarani@xkarani:~/SSH_Ansible$ docker inspect --format {{.NetworkSettings.IPAddress}} web2
+172.17.0.4
+xkarani@xkarani:~/SSH_Ansible$ docker inspect --format {{.NetworkSettings.IPAddress}} web3
+172.17.0.2
+xkarani@xkarani:~/SSH_Ansible$ docker inspect --format {{.NetworkSettings.IPAddress}} db1
+172.17.0.5
+
