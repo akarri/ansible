@@ -1,0 +1,9 @@
+[webserver]
+
+web1	ansible_user=root
+web2	ansible_user=root
+web3    ansible_user=root
+
+[databases]
+db1	ansible_user=root
+

@@ -17,3 +17,11 @@ xkarani@xkarani:~/SSH_Ansible$ docker inspect --format {{.NetworkSettings.IPAddr
 xkarani@xkarani:~/SSH_Ansible$ docker inspect --format {{.NetworkSettings.IPAddress}} db1
 172.17.0.5
 
+
+
+#####Installation of Ansible on the automation server
+
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
