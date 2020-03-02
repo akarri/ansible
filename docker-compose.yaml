@@ -1,0 +1,45 @@
+version: '3.0'
+services:
+  web1:
+    build:
+      context: .
+      dockerfile: Dockerfile.ssh
+    container_name: web1
+    restart: always
+    networks:
+      ansible_network:
+        ipv4_address: 172.22.0.101
+  web2:
+    build:
+      context: .
+      dockerfile: Dockerfile.ssh
+    container_name: web2
+    restart: always
+    networks:
+      ansible_network:
+        ipv4_address: 172.22.0.102
+  web3:
+    build:
+      context: .
+      dockerfile: Dockerfile.ssh
+    container_name: web3
+    restart: always
+    networks:
+      ansible_network:
+        ipv4_address: 172.22.0.103
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile.ssh
+    container_name: db
+    restart: always
+    networks:
+      ansible_network:
+        ipv4_address: 172.22.0.104
+networks:
+  ansible_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.22.0.0/16
+

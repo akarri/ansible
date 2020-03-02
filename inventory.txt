@@ -1,0 +1,21 @@
+[webservers]
+web1 ansible_ssh_host=172.22.0.101
+web2 ansible_ssh_host=172.22.0.102
+web3 ansible_ssh_host=172.22.0.103
+
+[dbservers]
+db1 ansible_ssh_host=172.22.0.104
+
+[locals]
+#localhost
+
+[datacenter:children]
+webservers
+dbservers
+
+[datacenter:vars]
+ansible_user=root
+#ansible_host=
+#ansible_port=
+ansible_ssh_pass=toor
+#ansible_ssh_private_key_file=
