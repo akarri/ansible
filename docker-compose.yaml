@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile.ssh
     container_name: web1
     restart: always
+    ports:
+      - "10180:80"
     networks:
       ansible_network:
         ipv4_address: 172.22.0.101
@@ -15,6 +17,8 @@ services:
       dockerfile: Dockerfile.ssh
     container_name: web2
     restart: always
+    ports:
+      - "10280:80"
     networks:
       ansible_network:
         ipv4_address: 172.22.0.102
@@ -24,6 +28,8 @@ services:
       dockerfile: Dockerfile.ssh
     container_name: web3
     restart: always
+    ports:
+      - "10380:80"
     networks:
       ansible_network:
         ipv4_address: 172.22.0.103
@@ -42,4 +48,3 @@ networks:
       driver: default
       config:
         - subnet: 172.22.0.0/16
-

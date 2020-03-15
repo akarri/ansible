@@ -21,7 +21,7 @@ Docker compose
 docker-compose up -d   ## Start the stack in background
 docker-compose down --rmi all ## remove the stack of containers launched and images, network
  
-
+docker-compose ps  ## list all the starte containers
 
 Ansible tweak to disable ssh check
 ---------------------------------
