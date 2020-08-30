@@ -1,0 +1,13 @@
+Ad-Hoc Keywords
+
+Before hopping into Ad-Hoc commands, let us first learn Ansible keywords:
+
+    ansible: This is a tool that allows you to run a single task at a time.
+
+$ ansible <host-pattern> [-m module_name] [-a args] [options]
+
+    ansible-playbook: This is the tool used to run ansible playbook
+
+$ ansible-playbook <filename.yml> ... [options]
+
+
