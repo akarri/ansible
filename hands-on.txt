@@ -1,4 +1,5 @@
 Ad-Hoc Keywords
+---------------------
 
 Before hopping into Ad-Hoc commands, let us first learn Ansible keywords:
 
@@ -9,5 +10,120 @@ $ ansible <host-pattern> [-m module_name] [-a args] [options]
     ansible-playbook: This is the tool used to run ansible playbook
 
 $ ansible-playbook <filename.yml> ... [options]
+
+
+ansible-console: This is a REPL using which you can run ad-hoc commands on chosen inventories.
+
+$ ansible-console <host-pattern> [-m module_name] [-a args] [options]
+
+    ansible-pull: This inverts the default push architecture of Ansible into a pull architecture, which has near-limitless scaling potential.
+
+ansible-pull -U URL [options] [ <filename.yml> ]
+
+    ansible-doc: Displays data on modules installed in Ansible libraries.
+
+$ ansible-doc [-M module_path] [-l] [-s] [module...]
+
+
+xkarani@xkarani:~/github.com/ansible$ ansible datacenter -i inventory.txt  -m shell -a uptime
+web3 | CHANGED | rc=0 >>
+ 15:28:54 up 16:53,  1 user,  load average: 1.52, 1.69, 1.00
+
+web2 | CHANGED | rc=0 >>
+ 15:28:54 up 16:53,  1 user,  load average: 1.52, 1.69, 1.00
+
+db1 | CHANGED | rc=0 >>
+ 15:28:54 up 16:53,  1 user,  load average: 1.52, 1.69, 1.00
+
+web1 | CHANGED | rc=0 >>
+ 15:28:54 up 16:53,  1 user,  load average: 1.52, 1.69, 1.00
+
+xkarani@xkarani:~/github.com/ansible$ ansible dbservers -i inventory.txt  -m shell -a uptime
+db1 | CHANGED | rc=0 >>
+ 15:30:01 up 16:54,  1 user,  load average: 0.67, 1.39, 0.94
+
+xkarani@xkarani:~/github.com/ansible$
+
+
+Running Your First Ad-hoc Command
+--------------------------------
+
+    An ad-hoc command is a single statement to complete a particular task. For example: consider you want to check if you could connect to your hosts.
+
+Open Katacoda and enter the following command:
+
+ansible group1 -i myhosts -m ping
+
+The above statement is a single task to ping target host and return pong if the connection is successful.
+
+    ansible is a keyword you need to write before running any ad-hoc command
+
+    group1 is the group name of the list of hosts
+
+    -m means module, this is followed by the module name ping, which will be executed to achieve the task
+
+To know more about each module you can try: ansible-doc ping.
+
+
+Copy a File to the Servers
+-----------------------
+You can use copy module to copy a file from your control machine to host as shown:
+
+$ touch test.txt
+
+    This will create a sample file which could be used to copy
+
+$ ansible host01 -i myhosts -m copy -a "src=test.txt dest=/tmp/"
+
+    copy the file test.txt from your control machine (where ansible is installed) to all the hosts defined in myhosts inventory group
+
+    -a means arguments of that module (here copy module)
+
+    src is attribute of copy module that defines the source path of file or directory on control machine
+
+Similarly, to fetch a file from Host to your Control Machine, you can use fetch module. You may use ansible-doc fetch to know about it.
+
+
+
+Encrypting Your File
+--------------------------
+
+As you just created a test.txt file, let us now encrypt the same using ansible-vault keyword.
+
+    $ ansible-vault encrypt test.txt: encrypts the file.
+
+This asks for a password to be set. Give a password and confirm it.
+
+    ansible-vault edit test.txt: to edit the file and add some content.
+
+This opens vi editor. Type some text, then save it(:wq)
+
+    cat test.txt: to view the content inside.
+
+Observe the output carefully
+
+    ansible-vault decrypt test.txt: to decrypt the file, use the password set during encryption
+
+    cat test.txt: now observe the output
+    
+    
+    
+Create Directories and Files
+--------------------------------
+
+You can use file module to create files and directories, manage their permissions and ownership as shown:
+
+ansible host01 -i myhosts -m file -a "dest=/tmp/test mode=644 state=directory"
+
+    This will create directory /tmp/test on all the host01 of myhosts group
+
+    mode defines permission of file/directory
+
+    state can take value: file, directory, link, absent, etc
+
+You can set the state to absent to delete a file or directory to delete it:
+
+$ ansible host01 -i myhosts -m file -a "dest=/tmp/test state=absent"
+
 
 
