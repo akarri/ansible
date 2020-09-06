@@ -1,0 +1,5 @@
+---
+# tasks file for practice
+- debug: msg="Variable inserted in the 'my_var' is {{ my_var }}"
+
+- debug: msg="Variables from the 'my_vars.yml' is {{ first_var }}  {{ second_var }}  {{ third_var }}"

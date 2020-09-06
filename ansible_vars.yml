@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    my_var: "it's me Anee :)"
+  vars_files:
+    my_vars.yaml
+  roles:
+    - practice

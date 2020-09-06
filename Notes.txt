@@ -42,3 +42,7 @@ Woah! your environment is ready to get started.
 First Ansible playbook
 
 ansible-playbook -i inventory.txt Exercise-1/apt-update-install-vim.yml 
+
+
+Sites with examples
+https://www.middlewareinventory.com/blog/ansible-playbook-example/
