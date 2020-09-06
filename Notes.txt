@@ -24,6 +24,10 @@ docker-compose ps      ## list all the containers start by docker-compose
  
 docker-compose ps  ## list all the starte containers
 
+In case if you try to down all the docker-compose containers, will face an remote ssh exception. Remove the know_hosts file from the user's home directory
+root@ansible:~/06Sep/ansible$ rm ~/.ssh/known_hosts
+
+
 Ansible tweak to disable ssh check
 ---------------------------------
 
