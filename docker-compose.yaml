@@ -1,5 +1,16 @@
 version: '3.0'
 services:
+  ssh:
+    build:
+      context: .
+      dockerfile: Dockerfile.centos
+    container_name: centos-srv
+    restart: always
+    ports:
+      - "10580:80"
+    networks:
+      ansible_network:
+        ipv4_address: 172.22.0.105
   web1:
     build:
       context: .

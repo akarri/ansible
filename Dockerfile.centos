@@ -1,0 +1,4 @@
+FROM 1073100xkarani/centos-ssh:7
+
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
